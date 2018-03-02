@@ -1,0 +1,72 @@
+/*
+  Resolucao Ficha3_6
+  
+  Este programa repete o programa anterior anterior, mas usando 
+  uma função para calcular e devolver o valor máximo de um array 
+  passado como argumento.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+int calcMax(int vals[]); // Protótipo da função
+
+int main()
+{
+	int nums[N];
+	int i;
+
+	// carregar array
+
+	i = 0;
+	while (i < N)
+	{
+		printf("\n\nDigite o valor seguinte: ");
+		fflush(stdin);
+		scanf("%d", &nums[i]);
+
+		i++;
+	}
+
+	// Mostrar os valores que foram digitados para o array
+
+	printf("\n\nOs valores digitados do array sao:\n\n");
+ 
+	i = 0;
+
+	while (i < N)
+	{
+		printf("\n%d", nums[i]);
+
+		i++;
+	}
+
+	// chama função para determinar e devolver o valor máximo, 
+	// o qual será impresso aqui
+
+	printf("\n\nO valor maximo = %d", calcMax(nums));
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+} 
+
+int calcMax(int vals[])
+{
+	int i = 0;
+	int maximo = vals[0]; 
+			  		 
+	while (i < N)
+	{
+		if (vals[i] >= maximo)
+		{
+			maximo = vals[i];
+		}
+		i++;
+	}
+
+	return maximo;
+}

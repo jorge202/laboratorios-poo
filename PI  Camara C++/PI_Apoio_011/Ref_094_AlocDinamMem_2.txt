@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+// Programa Ref_094_AlocDinamMem_2
+
+// Alocação dinâmica de Memória - Revisão e mais sobre
+//
+// permite alocar dinâmicamente memória
+// a partir da free memory do heap
+// esta memoria depois de usada deve ser libertada
+// tecnica muito util na manipulação de dados que podem
+// tanto aumentar como decrescer durante a execução do
+// programa
+
+// requer ponteiros e o operador new
+// a libertação da mem é através do comando delete
+//
+
+int main()
+{
+	double *p;	// um ponteiro para um double
+
+	// pede alocação de Mem para um double
+	// é devolvido um endereço de Mem livre, heap,
+	// para um double, em caso de sucesso
+	p = new double; 
+
+	if (p)		// testa se obteve Memory
+	{
+		cout << "Sim Ha Mem na posicao = " 
+				<< p << endl;
+		*p = 100;		// colocamos um valor na Mem
+		cout << " O valor da Mem livre = "
+				<< *p << endl;
+
+		delete p;	// libertação da Mem
+	}
+	else
+		cout << "Nao ha Mem" << endl;
+
+	system("pause");
+	return 0;
+}

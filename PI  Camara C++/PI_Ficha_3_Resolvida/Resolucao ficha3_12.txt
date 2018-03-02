@@ -1,0 +1,63 @@
+/*
+  Resolucao Ficha3_12
+
+  Repete o programa anterior, mas usando uma função 
+  para testar se o número passado como parâmetro é 
+  ou não primo.
+*/
+ 
+#include <stdio.h>
+#include <stdlib.h>
+
+int testaPrimo(int val);
+
+int main()
+{
+	int num;
+
+	printf("\nTesta se numero inteiro digitado e primo: ");
+	printf("\n\nDigite um numero inteiro: ");	
+	fflush(stdin);
+	scanf("%d", &num);
+	
+	
+// chama função para determinar se o valor passado como
+// argumento se se trata ou não de um número primo.
+// se o número for primo  a função devolve 1 para aqui
+// caso contrário, devolve 0
+
+	if (testaPrimo(num)) 
+	{
+		printf("\nSim, numero primo\n\n");
+	}
+	else
+		printf("\n\nNumero nao primo\n");
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+
+} // fecha main
+
+
+// Função devolve 0 se houve algum resto 0 numa divisão
+// significando que número não é primo
+// Devolve 1 se é primo
+
+int testaPrimo(int val)
+{
+	int k = val - 1;
+
+	while (k > 1)
+	{
+		if ((val % k) == 0)
+		{
+			return 0;
+		}
+		
+		k--;
+	}
+
+	return 1; // é primo
+} 

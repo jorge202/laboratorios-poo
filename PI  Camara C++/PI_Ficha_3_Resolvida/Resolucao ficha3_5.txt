@@ -1,0 +1,90 @@
+ 
+/*
+    Resolucao Ficha3_5
+
+	Este programa determina o valor máximo de um array
+	de cinco valores inteiros digitados.
+
+	Passos principais:
+
+	1. declarar um array de cinco inteiros
+	2. declarar um contador-indice geral
+	3. declarar uma var aux para guardar o valor máximo
+	4. inicializar as vars do tipo acumulador/contador
+	5. carregar o array usando um ciclo
+	6. mostrar os valores do array
+	7. processar o array a fim de determinar qual o valor máximo
+	8. para isto, inicialmente determina-se de "boa-fé" que o 1º 
+	   elm do array é o valor máximo (esta é uma das técnicas).
+	   Sendo assim atribui-se a uma var, por exemplo, chamada max, 
+	   o valor da primeira posição do array.
+	   Seguidamente num ciclo compara-se esta var com os 
+	   restantes valores do array, actualizando-a sempre 
+	   que seja encontrado um valor superior.
+	9. Mostrar o valor máximo.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+int main()
+{
+	int nums[N];
+	int i;
+	int maximo;
+
+	// carregar array
+
+	i = 0;
+	while (i < N)
+	{
+		printf("\n\nDigite o valor seguinte: ");
+		
+		fflush(stdin);
+	
+		scanf("%d", &nums[i]);
+
+		i++;
+	}
+
+
+	// Mostrar os valores que foram digitados para o array
+
+	printf("\n\nOs valores digitados do array sao:\n\n");
+ 
+	i = 0;		// reset do contador
+	while (i < N)
+	{
+		printf("\n%d", nums[i]);
+		i++;
+	}
+
+	// determinar valor máximo
+
+	// numa das técnicas, inicializa-se uma var aux com o 1º elm do array
+	// seguidamente, percorre-se todo o array, actualizando esta var aux 
+	// sempre que se encontre um valor superior
+
+	maximo = nums[0];// inicializa com o valor do 1º elm
+			  		  
+	i = 0;
+	while (i < N)
+	{
+		if (nums[i] >= maximo)
+		{
+			maximo = nums[i]; // actualiza a var auxiliar
+		}
+		i++;
+	}
+	
+	// mostrar o valor máximo
+
+	printf("\n\nO valor maximo = %d", maximo);
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+}

@@ -1,0 +1,96 @@
+/*
+    Resolução Ficha4_5
+
+    Repita o programa anterior, mas usando uma função para calcular 
+    e devolver o valor máximo de um array passado como argumento.
+*/
+     
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+double calcMax(double *p);
+
+int main()
+{
+	double nums[N];	
+	int i;
+	double *p;    // pointer para o array
+
+	p = &nums[0]; // carrega no pointer p endereço 1ª posição array
+
+	// Carregar o array
+	// Ter em atenção que a sintaxe da função scanf requer, além de, 
+	// primeiramente, o especificador %lf do tipo de dados a ler, o endereço
+	// da variável ou elemento de um array onde carregar o valor digitado.
+
+	// Portanto, neste caso, já que estamos a usar pointers, a forma 
+	// correta do scanf é scanf_s("%lf", p); já que p contém o endereço do
+	// elemento do array onde carregar o valor digitado.
+
+	i = 0;
+	while (i < N)
+	{
+		printf("\n\nDigite o valor seguinte: ");	
+		fflush(stdin);
+		scanf("%lf", p);
+
+		p++;
+		i++;
+	}
+
+	// Mostrar os valores que foram digitados para o array
+
+	printf("\n\nOs valores digitados do array sao:\n\n");
+ 
+	i = 0;		   // reset do contador
+	p = &nums[0];  // reset pointer para a 1ª posição array
+	while (i < N)
+	{
+		printf("\n%4.2lf", *p++);
+		i++;
+	}
+
+	// mostrar o valor máximo
+
+	 printf("\n\nO valor maximo = %4.2lf", calcMax(nums));
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+
+} // fecha main
+
+
+// Esta função recebe um array de doubles, pelo que assim o seu
+// parâmetro formal declara um pointer para doubles
+// A função devolve um pointer para double
+
+double calcMax(double *p)
+{
+	double maximo;
+	int i;
+	
+	double *m;    // pointer para a var maximo
+
+	m = &maximo;  // carrega no pointer m endereço da var maximo
+
+	// determinar valor máximo
+
+	i = 0;
+	*m = *p; 	
+	while (i < N)
+	{
+		if (*p >= *m)
+		{
+			*m = *p;
+		}
+
+		p++;
+		i++;
+	}
+
+	return maximo;
+}

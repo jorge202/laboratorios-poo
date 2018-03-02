@@ -1,0 +1,53 @@
+/*
+  Resolucao Ficha3_3
+ 
+  Escreva um programa que leia uma string digitada e que, 
+  seguidamente, crie uma outra string-cópia, aplicando
+  somente manipulação caracter a caracter.
+	
+  Mostre no ecrã a nova string. 
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_MAX_CARACT 40
+
+int main()
+{
+	char strBase[NUM_MAX_CARACT];
+	char strCopia[NUM_MAX_CARACT];
+
+	int i,k;
+
+	printf("\n\nDigite a string base: ");
+	fflush(stdin);
+	gets(strBase);
+
+	i = 0;
+	k = 0;
+
+// Repetir enquanto não for encontrado o fim da string base
+
+	while (strBase[i] != '\0')
+	{
+		strCopia[k++] = strBase[i++];
+	}
+	
+// A string-copia que foi criada carater a carater a partir
+// de uma string fonte tem que ser terminada corretamente
+// com '\0' (já que se trata de uma string que não foi 
+// digitada ou inicializda, mas sim criada carater a carater,
+// através da manipulação pura dos carateres da string.
+
+	strCopia[i] = '\0';
+
+	printf("\n\nA String Base: %s", strBase);
+
+	printf("\n\nA String Copia: %s", strCopia);
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+}

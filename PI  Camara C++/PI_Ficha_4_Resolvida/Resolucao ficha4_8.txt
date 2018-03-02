@@ -1,0 +1,43 @@
+/*
+  Resolução Ficha4_8
+
+  Aplicando ponteiros, escreva um programa que leia uma string 
+  digitada e que, seguidamente, crie uma nova string-cópia.
+	
+  Mostre no ecrã a nova string. 
+*/
+    
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_MAX_CARACT 40
+
+int main()
+{
+	char strBase[NUM_MAX_CARACT];
+	char strCopia[NUM_MAX_CARACT];
+
+	char *fonte, *destino;
+
+	fonte = &strBase[0];
+	destino = &strCopia[0];
+	
+	printf("\n\nDigite a string base: ");
+	fflush(stdin);
+	gets(strBase);
+
+	while (*fonte)
+	{
+		*destino++ = *fonte++;
+	}
+
+	*destino = '\0'; // concluir corretamente a string destino
+
+	printf("\n\nA String Base: %s", strBase);
+	printf("\n\nA String Copia: %s", strCopia);
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+}

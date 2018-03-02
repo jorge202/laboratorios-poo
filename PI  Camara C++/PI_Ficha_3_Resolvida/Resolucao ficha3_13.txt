@@ -1,0 +1,84 @@
+/*
+	Resolucao Ficha3_13
+
+	Desenvolva um programa que calcule e envie para o ecrã
+	os 10 primeiros números primos.
+ 
+	Recorde-se que um número primo é um inteiro que apenas 
+	é divisível pela unidade e por si próprio.
+ 
+	Assim, por exemplo, 1 é primo enquanto 9 não o é.
+*/
+   
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_PRIMOS 10
+
+int main()
+{
+// Vector para guardar os nums primos enquanto vão sendo gerados.
+// Trata-se de uma boa ideia.
+
+	int primos[NUM_PRIMOS]; 
+
+// Declaração das vars auxiliares
+
+	int i, k, flag, resto, val_teste; 
+
+// Inicializa contador de nums primos
+
+	i = 0;
+
+// Inicializa o valor a testar se é primo
+	val_teste = 1;
+
+// Repetir o processo enquanto não obtivermos
+// os nums primos pretendidos
+
+while (i < NUM_PRIMOS)
+{
+// Vamos dizer que o num que vamos testar é primo
+// inicializando a var flag a 1 antes de cada teste. 
+// Temos então que provar isso.
+// Se durante a verificação houver a produção de um resto 0,
+// entao o num não é primo e a var flag passa a ter 
+// o valor 0 (Zero).
+
+	flag = 1;
+	for (k = val_teste - 1; k > 1; k--)
+	{
+		resto = val_teste % k;
+
+		if (resto == 0)
+		{
+			flag = 0;	// Não é primo
+
+			break;
+		}
+	}
+
+	if (flag ==1 )
+ // Sim, é primo, inseri-lo no array e actualiza-se contador
+		primos[i++]= val_teste;
+
+	val_teste++;	// actualiza o próximo valor a testar
+}
+
+// mostrar os 10 primeiros nums primos
+
+	printf("\n\nOs 10 primeiros Numeros primos sao:\n\n");
+
+	for (i=0; i < NUM_PRIMOS; i++)
+
+			printf("\n%d", primos[i]);
+
+	printf("\n\n\n");;
+	system("pause");
+
+	return 0;
+}
+
+
+
+

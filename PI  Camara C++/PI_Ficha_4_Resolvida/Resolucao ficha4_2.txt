@@ -1,0 +1,89 @@
+/*
+	Resolução Ficha4_2
+
+	Crie um programa que determine a quantidade de valores negativos 
+	contidos numa tabela bidimensional 3X4, através de uma função por
+	si criada. 
+	
+	O resultado deve ser impresso pela função chamante (main).
+*/
+  
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N_LINS 3 //número de linhas da matriz
+#define N_COLS 4 //número de colunas da matriz
+
+int calc_qtd_Negs(double vals[N_LINS][N_COLS]); // Protótipo
+
+int main()
+{
+	double mat[N_LINS][N_COLS];
+
+	int i;	// ctdr-indice das linhas
+	int j;	// ctdr-indice da colunas
+
+	
+	// carregamento da tabela bidimensional
+	
+	printf("\n\nCalcula o valor maximo de um array bidimensional\n\n");
+
+	for (i = 0; i < N_LINS; i++)
+	{
+		for (j = 0; j < N_COLS; j++)
+		{
+			printf("Digite o valor %d,%d: ", i, j);
+			fflush(stdin);
+			scanf("%lf", &mat[i][j]);
+
+			printf("\n");
+		}
+	}
+
+	// mostrar a tabela
+
+	printf("\n\nEis os dados da tabela: \n\n");
+
+	for (i = 0; i < N_LINS; i++)
+	{
+		for (j = 0; j < N_COLS; j++)
+		{
+			printf(" %4.2lf ", mat[i][j]);			
+		}
+		
+		printf("\n"); // mudança de linha da matriz
+	}
+
+	// chama função e imprime o resulatdo devolvido, um inteiro
+
+	printf("\n\nA tabela tem %d valores negativos\n\n", calc_qtd_Negs(mat));
+
+	system("pause");
+
+	return 0;
+
+} // fecha main
+
+
+// Função que recebe um array-bi de doubles para calcular 
+// e devolver a quantidade de valores negativos.
+
+// Portanto, o valor a devolver é um inteiro, o que significa 
+// que a função é do tipo int
+
+int calc_qtd_Negs(double vals[N_LINS][N_COLS]) // função é do tipo int
+{
+	int i, j, k_negs;
+
+	for (i = 0, k_negs = 0; i < N_LINS; i++)
+	{
+		for (j = 0; j < N_COLS; j++)
+		{
+			if (vals[i][j] < 0)
+
+				k_negs++;
+		}
+	}
+
+	return k_negs;
+}

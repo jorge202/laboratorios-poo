@@ -1,0 +1,63 @@
+/*
+   Resolucao Ficha3_7
+
+   Crie um programa que indique se um array unidimensional 
+   de doubles contém valores acima do valor 100.
+*/
+ 
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+int main()
+{
+	double nums[N];
+	int tem_acima_100;
+	int i;
+
+	// carregar vector
+	for (i = 0; i < N; i++)
+	{
+		printf("\n\nDigite o valor seguinte: ");
+		fflush(stdin);
+		scanf("%lf", &nums[i]); // %lf significa long float que é um double
+	}
+
+	// ver os valores do vector
+
+	printf("\n\nEis os valores digitados:\n\n");
+
+	for (i = 0; i < N; i++)
+	{
+		printf("\n %6.2lf", nums[i]); // %lf = long float = double
+	}
+
+
+	tem_acima_100 = 0; // inicializa flag a 0
+
+	i = 0;
+	while (i < N)
+	{
+		if (nums[i] > 100)
+		{
+			tem_acima_100 = 1; // "levanta" a bandeira
+			break;
+		}
+
+		i++;
+	}
+
+	if (tem_acima_100 == 1)
+	{
+		printf("\n\nSim, ha valores acima do valor 100");
+	}
+	else
+		printf("\n\nNao ha valores acima do valor 100");
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+}
+

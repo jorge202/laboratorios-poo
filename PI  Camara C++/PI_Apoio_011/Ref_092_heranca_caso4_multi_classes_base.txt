@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+// Programa Ref_092_heranca_caso4_multi_classes_base
+
+// Herança de múltiplas classe base
+
+// é a capacidade de uma classe herdar de várias classes
+
+class homem
+{
+protected:
+	int dado_h;
+public:
+	void mostra_dado_h()
+	{
+		cout << "dado do homem = " << dado_h << endl;
+	}
+};
+ 
+class mulher
+{
+protected:
+	int dado_m;
+public:
+	void mostra_dado_m() 
+	{
+		cout << "dado da mulher = " << dado_m << endl;
+	}
+};
+
+class atleta : public homem, public mulher
+{
+public:
+	void set(int a, int b)
+	{
+		dado_h = a; 
+		dado_m = b;
+	}
+};
+
+int main()
+{
+	atleta a;
+	a.set(20,25);
+	a.mostra_dado_h (); // acede a base 1
+	a.mostra_dado_m (); // acede a base 2
+
+	system("pause");
+	return 0;
+}

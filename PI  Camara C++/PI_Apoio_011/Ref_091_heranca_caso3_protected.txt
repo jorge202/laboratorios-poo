@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+// Programa Ref_091_heranca_caso3_protected
+
+// Herança
+// Caso protected
+
+//			3) Classe base herdada como protected:
+//
+//				i) Members public da classe base:
+//
+//					é o mesmo que fazermos uma cópia dos membros
+//					public da classe base e os colocássemos como protected
+//					na classe derivada.
+//
+//				ii) Members privados da classe base:
+//
+//					Não são passados.
+//
+//				iii) Members protected da classe base
+//
+//					São passados como protected para a classe
+//					derivada (no caso de os termos).
+
+
+class pessoa
+{
+protected:
+
+	int idade, peso;
+
+public:
+	void set(int a, int b)
+ 	{
+		idade = a; 
+		peso = b;
+	}
+
+	void mostra_dados_base() 
+	{
+		cout << "Idade = " << idade 
+		     << " Peso = " << peso 
+		     << endl;
+	}
+};
+
+
+class atleta : protected pessoa // observe que o especificador é protected
+{
+	int internacionaliz;	// num de internacionalizacoes
+
+public:
+	atleta(int x) // construtor 1
+	{
+		internacionaliz = x;
+	}
+
+	atleta(int k1, int k2)
+	{
+		idade = k1; 
+		peso = k2;
+	}
+
+	void set2(int k1, int k2) // construtor 2
+	{
+		idade = k1; 
+		peso = k2;
+	}
+
+	void mostra1_dados() 
+	{
+		cout << "Num de Internacionalizações = " 
+		     << internacionaliz << endl;
+	}
+
+	void mostra2_dados()
+	{ 
+		cout << "Idade: " << idade 
+		     << "Peso: "  << peso 
+		     << endl;
+	}
+};
+
+int main()
+{
+	atleta a(30);		// acede ao construtor da classe derivada, Ok.
+	atleta b(25,75);
+
+	//a.set(20,70);			// tenta aceder a member da classe base, ERRO!
+	//a.mostra_dados_base();	// repete o mesmo erro! Não pode! 
+
+	a.mostra1_dados();		// acede a member da classe derivada, Ok.
+	b.mostra2_dados();
+
+	a.set2(25, 60);
+	a.mostra2_dados();
+
+	system("pause");
+	return 0;
+}
+
+
+

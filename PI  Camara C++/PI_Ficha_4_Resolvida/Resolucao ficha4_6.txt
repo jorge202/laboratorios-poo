@@ -1,0 +1,105 @@
+/*
+    	Resolução Ficha4_6
+    
+	Repita o programa anterior, mas faça a função chamada devolver um
+	ponteiro contendo o endereço onde se encontra o valor máximo. 
+
+	Assim, a função chamada terá que ser do tipo pointer para um double 
+	e o valor de retorno é um pointer.
+
+	Por sua vez, a função chamante (main) irá receber um endereço da 
+	função chamada, o qual permitirá um acesso indirecto ao valor 
+	pretendido.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+double * calcMax(double *p);
+
+int main()
+{
+	double nums[N];	
+	int i;
+	double *p;
+
+	p = &nums[0];
+
+	i = 0;
+	while (i < N)
+	{
+		printf("\n\nDigite o valor seguinte: ");	
+		fflush(stdin);
+		scanf("%lf", p);
+
+		p++;
+		i++;
+	}
+
+	// Mostrar os valores que foram digitados para o array
+
+	printf("\n\nOs valores digitados do array sao:\n\n");
+ 
+	i = 0;		   
+	p = &nums[0]; 
+	while (i < N)
+	{
+		printf("\n%4.2lf", *p++);
+		i++;
+	}
+
+	// Calcular e mostrar o valor máximo
+	// Para isto, vai chamar uma função
+	// Neste exemplo, o param actual é um pointer (o endereço do
+	// 1º elm do array - passando o nome do array fazia o mesmo 
+	// efeito).
+	// Como a função chamada vai devolver para aqui o endereço 
+	// onde se encontra o valor máximo, então precisamos do * 
+	// para extrair o seu conteúdo, daí a chamada ter a seguinte 
+	// forma *calcMax(p)
+
+	p = &nums[0];
+	printf("\n\nO valor maximo = %4.2lf", *calcMax(p));
+
+	printf("\n\n\n");
+	system("pause");
+	return 0;
+
+} // fecha main
+
+
+// Esta função devolve um ponteiro
+// Por isso, a função requer o * na declaração 
+// do seu tipo (double *)
+
+double * calcMax(double *p)
+{
+	double maximo;
+	int i;
+	
+	double *m;    // pointer para a var maximo
+
+	m = &maximo;  // carrega no pointer m endereço da var maximo
+
+	i = 0;
+	*m = *p; // através do pointer m guarda-se o valor do 1º elm do array
+	
+	while (i < N)
+	{
+		if (*p >= *m)
+		{
+			*m = *p;
+		}
+
+		p++;
+		i++;
+	}
+
+	// Atenção ao retorno desta função
+	// retorna o endereço que aponta para o local 
+	// onde se encontra o valor maximo.
+
+	return m; 
+}

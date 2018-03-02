@@ -1,0 +1,54 @@
+/*
+  Resolucao Ficha3_14
+  
+  Escreva um programa que leia uma string digitada e que, seguidamente, 
+  passe-a, como parâmetro, a uma função, por si criada, para lhe calcular 
+  e devolver a quantidade total de todas as vogais minúsculas. 
+
+  Finalmente mostre (a função chamante) o resultado no ecrã.
+
+  Aplique manipulação da string carater a carater
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_MAX_CARACT 40
+
+int contaVogais(char m[]);
+
+int main()
+{
+	char str[NUM_MAX_CARACT];
+
+	printf("\nDigite uma string: ");
+	fflush(stdin);
+	gets(str);
+
+	printf("\n\nA String tem %d Vogais minusculas", contaVogais(str));
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+
+} // fecha main
+
+
+int contaVogais(char m[])
+{
+	int i = 0;
+	int qtdVogais = 0;
+
+	while (m[i])
+	{
+		if ((m[i]=='a') || (m[i]=='e') || (m[i]=='i') || (m[i]=='o') || (m[i]=='u'))
+		{
+			qtdVogais++;
+		}
+
+		i++; 
+	}
+
+	return qtdVogais;
+}

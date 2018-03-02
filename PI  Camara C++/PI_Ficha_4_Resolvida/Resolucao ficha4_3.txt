@@ -1,0 +1,185 @@
+/*
+	Resolução Ficha4_3
+
+	A firma Barata & Barata Serviços Lda. tem cinco empregados pagos consoante 
+	o número de horas que trabalham. 
+  
+	Escreva um programa para calcular o ordenado líquido de cada empregado, 
+	bem como a média de todos os salários brutos e o nome da pessoa com o 
+	maior salário bruto. 
+
+	Use um array de estruturas.
+
+
+	As Taxas são as seguintes.
+
+	IRS = 	20% Se salário bruto >= 1000€.
+	15% Se salário bruto >= 500€ e < 1000€.
+	10% Se salário bruto < 500€.
+
+	Horas Extras = acima de 35H cada Hora vale 1,5H (incluindo 
+	horas trabalhadas durante o fim de semana).
+
+	Segurança Social = 11% sobre o salário bruto.
+	
+	O programa deve pedir para digitar o seguinte:
+
+	Número do empregado.
+	nome do empregado
+	Número de horas que o empregado trabalhou.
+	Valor Hora que o empregado é pago.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_EMPS 2
+
+#define TAXA1_IRS 0.20
+#define TAXA2_IRS 0.15
+#define TAXA3_IRS 0.10
+
+#define TAXA_SS 0.11
+
+int main()
+{
+	struct empregado
+	{
+		long num;
+		char nome [30];
+		double n_horas;
+		double valor_h;
+		double bruto;
+		double irs;
+		double seg_social;
+		double liquido;
+	};
+
+	struct empregado emp[NUM_EMPS];
+		
+	int i;
+
+	double media, soma;
+	double h_extras; // var auxiliar para guardar o número de horas extraordinárias
+	double v_extras; // var auxiliar para guardar o valor das horas extraordinárias
+	double max;
+	int k; // var para guardar o índice da estrutura do array com o salário maior
+
+	// carregamento dos dados base do array
+	for (i=0; i < NUM_EMPS; i++)
+	{
+		printf("\n\nInsira o numero do empregado seguinte: ");
+		fflush(stdin);
+		scanf("%ld", &emp[i].num);
+
+		printf("\nInsira o seu nome: ");
+		fflush(stdin);
+		gets(emp[i].nome);
+
+		printf("\nInsira o numero de horas que trabalhou: ");
+		fflush(stdin);
+		scanf("%lf", &emp[i].n_horas);
+
+		printf("\nInsira o seu valor-hora: ");
+		fflush(stdin);
+		scanf("%lf", &emp[i].valor_h);
+	}
+	
+	// visualizar os dados digitados para o array de estruturas
+
+	printf("\n\nEis os dados introduzidos::\n\n");
+
+	for (i = 0; i < NUM_EMPS; i++)
+	{
+		printf("\nNumero: %ld", emp[i].num);
+		printf("\nNome: %s", emp[i].nome);
+		printf("\nHoras: %4.2lf", emp[i].n_horas);
+		printf("\nHoras: %4.2lf\n\n", emp[i].valor_h);
+	}
+
+	// calculos gerais ao nível do empregado
+
+	for (i = 0; i < NUM_EMPS; i++)
+	{
+		emp[i].bruto = emp[i].n_horas * emp[i].valor_h;
+
+		// determinar se há horas extraordinárias
+	
+		if (emp[i].n_horas > 35)
+		{
+			h_extras = emp[i].n_horas - 35;
+
+		//calcular Valor 1/2H por cada hora e actualizar bruto
+
+			v_extras = h_extras * (emp[i].valor_h/2);
+
+			emp[i].bruto = emp[i].bruto + v_extras;
+		}
+
+		// calcular irs
+
+		if (emp[i].bruto >= 1000)
+		{
+			emp[i].irs = emp[i].bruto * TAXA1_IRS;
+		}
+		else if ((emp[i].bruto >= 500) && (emp[i].bruto < 1000))
+		{
+			emp[i].irs = emp[i].bruto * TAXA2_IRS;
+		}
+		else
+		{
+			emp[i].irs = emp[i].bruto * TAXA3_IRS;
+		}
+
+		// calcular SS e o salário líquido do presente empregado 
+
+		emp[i].seg_social = emp[i].bruto * TAXA_SS;
+
+		emp[i].liquido = emp[i].bruto - (emp[i].irs + emp[i].seg_social);
+	}
+
+
+	// Cálculo estatísticos
+	// Cálculo da média
+
+	for (i = 0, soma = 0; i < NUM_EMPS; i++)
+	{
+		soma = soma + emp[i].bruto;
+	}
+
+	media = soma / NUM_EMPS;
+
+	// Determinar o nome do funcionário com o maior salário
+	// Vamos começar por dizer que é a primeira estrutura que contém  
+	// o nome da pessoa com o maior salário. 
+	// Depois provamos isso a partir das estruturas seguintes.
+	
+	max = emp[0].bruto;
+	k = 0;
+	for (i = 1; i < NUM_EMPS; i++)
+	{
+		if (emp[i].bruto > max) 
+			
+			k = i; // guarda-se em k o índice do maior salário actual
+	}
+
+	// mostrar os resultados
+	for (i = 0; i < NUM_EMPS; i++)
+	{
+		printf("\n\nDados referentes ao Vencimento do empregado numero: %ld\n\n", emp[i].num);
+		printf("Nome:  %s", emp[i].nome);
+		printf("\nValor bruto: %4.2lf", emp[i].bruto);
+		printf("\nIRS: %6.2f", emp[i].irs);
+		printf("\nSeg. Social: %4.2lf", emp[i].seg_social);
+		printf("\nLiquido: %4.2f\n\n", emp[i].liquido);
+	}
+
+	printf("\n\nDados Estatisticos:\n\n");
+	printf("\nMedias dos Salarios Brutos: %4.2f", media);
+	printf("\n\nNome do funcionario com o maior salario: %s", emp[k].nome);
+
+	printf("\n\n");
+	system("pause");
+
+	return 0;
+}

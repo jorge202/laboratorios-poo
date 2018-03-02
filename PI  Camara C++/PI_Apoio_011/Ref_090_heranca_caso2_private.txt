@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+// Programa Ref_090_heranca_caso2_private
+
+// Herança 
+// Caso private
+
+//			2) Classe base herdada como private:
+//
+//				i) Members public da classe base:
+//
+//					é o mesmo que fazermos uma cópia dos membros
+//					public da classe base e os colocássemos como 
+//					private na classe derivada.
+//
+//				ii) Members privados da classe base:
+//
+//					Não são passados.
+//
+//				iii) Members protected da classe base
+//
+//					São passados como private para a classe
+//					derivada (no caso de os termos).
+
+// Nota: Este código, tal como está escrito, gera erros!
+// se não comentarmos determinado código. 
+// Isto devido à presença dos especificadores private colocados 
+// de propósito por questões didáticas
+
+
+class pessoa
+{
+	int idade, peso; // private 
+public:
+	void set(int a, int b)
+	{
+         	idade = a; 
+         	peso = b;
+        }
+
+	void mostra_dados_base() 
+	{
+		cout << "Idade = " << idade 
+		     << "Peso = " << peso 
+  		     << endl;
+	}
+};
+
+
+class atleta : private pessoa // observe que o especificador é private!!!
+{
+	int internacionaliz;  // num de internacionalizações
+
+public:
+	atleta(int x)
+	{
+		internacionaliz = x;
+	}
+	
+	void mostra_dado_deriv()
+	{
+		cout << "Num de Internacionalizacoes = "
+		     << internacionaliz << endl;
+	}
+};
+
+int main()
+{
+	atleta a(30);		// acede ao construtor da classe derivada, Ok.
+
+	// a.set(20,70);	// tenta aceder a member da classe base, ERRO! (não pode devido private)
+
+	//a.mostra_dados_base();	// repete o mesmo erro! Não pode! (private)
+
+	a.mostra_dado_deriv();		// acede a member da classe derivada, Ok.
+
+	system("pause");
+
+	return 0;
+}
+
+
+

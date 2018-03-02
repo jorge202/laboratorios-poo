@@ -1,0 +1,138 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Programa  Ref_093 primitivas_de_strings_2
+
+// Mais funções nativas de manipulação de strings
+//
+// strcmp()
+// strupr()
+// strlwr()
+// strstr()
+
+int main(int argc, char *argv[])
+{
+	
+// Revisão das básicas para contexto
+	char fonte[30] = "lisboa e o Rio Tejo";	
+	char destino[30];
+	
+	char s1[30] = "O ISTEC no Lumiar";
+	char s2[30] = " na cidade de Lisboa";
+
+// -------------------
+// strlen(str) - numero de carateres contidos numa string
+	printf("\n\nA string - %s - tem %d carateres", fonte, strlen(fonte));
+
+// -------------------
+// strcpy(str_destino, str_fonte) - copia a string fonte para a str destino
+	strcpy(destino, fonte);
+
+	printf("\n\n strcpy: Copia de uma string:\n");
+	printf("\n\t Fonte: %s", fonte);
+	printf("\n\n\t Copia: %s", destino);
+
+// -------------------	
+// strcat(str1, str2) - anexa a str2 a str1
+	printf("\n\nA string s1: %s", s1);
+	printf("\nA string s2: %s", s2);
+
+	strcat(s1, s2);
+
+	printf("\n\nA nova string s1 com anexamento de s2:\n\n\t %s", s1);
+
+// -------------------
+// strcmp
+/* 	Comparação de strings 
+	A comparação é ASCII - léxica
+	Numa execução de uma comparação de strings, o valor devolvido
+	pela própria  função é usado na análise da comparação das strings.
+	
+	Vejamos, o seguinte exemplo:
+	
+	int k = strcmp(str1, str2);
+	
+	se k == 0 então as strings são iguais
+	
+	se k < 0 então, str1 < str2
+	exemplo:
+		char str1[] = "ABC";
+		char str2[] = "DEF";
+		k = strcmp(str1, str2);
+		
+		O valor de k vai ser negativo dado que "ABC" < "DEF"
+
+	Por sua vez, se k > 0 então, str1 > str2
+*/
+
+// Vejamos na seguinte prática:
+
+	char str1[] = "ABC";
+	char str2[] = "DEF";
+	int k;
+	
+	printf("\n\ncomparacao de strings:\n");
+	printf("\nString str1: %s", str1);
+	printf("\nString str2: %s", str2);
+	
+	printf("\n\nResultado da comparacao das duas strings:\n");
+	if((k = strcmp(str1, str2)) == 0)
+	{
+		printf("\n\nAs strings sao iguais");
+	}
+	else if (k < 0) printf("\nstr1 < str2");
+	else
+		printf("\n\nstr2 > str1");
+
+// -------------------
+// strupr
+// Converte todos os carateres de uma string para letras maiúsculas
+
+	printf("\n\nConverte os carateres de uma string para maiusculas:");
+	printf("\nDigite uma string: ");
+	fflush(stdin);
+	gets(str1);
+	printf("\nResultado: ");
+	printf("\n\t%s ", strupr(str1));
+		
+// -------------------	
+// strlwr
+// Converte todos os carateres de uma string para letras minúsculas
+
+	printf("\n\nConverte os carateres de uma string para minusculas: ");
+	printf("\nDigite uma string: ");
+	fflush(stdin);
+	gets(str1);
+	printf("\nResultado: ");
+	printf("\n\t%s ", strlwr(str1));	
+	
+	
+// -------------------	
+//	strstr
+/*
+	Busca uma substring numa dada string
+	Em caso de sucesso, devolve um pointer para a 1ª posição 
+	da substring com o endereço da memória onde se encontra 
+	essa posição.
+	Em caso de insucesso, devolve um pointer NULL.
+*/	
+	char string1[] = "Rio Tejo em Lisboa";
+	char *p;
+	
+	p = strstr(string1,"Tejo");
+	
+	if (p == NULL)
+	{
+		printf("\n\nA Sub-string:\n\t%s\nNao Foi encontrada", p);
+	}
+	else
+	{
+		printf("\n\nA Sub-string:\n\t%s\nFoi encontrada em:\n\t %ld\n", p, p);
+	}
+	
+	printf("\n\n");
+	system("pause");
+ 
+	return 0;
+}

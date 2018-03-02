@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+
+// #include <iomanip>
+
+using namespace std;
+
+// Programa Ref_089_heranca_caso1_public
+
+// Herança 
+// Caso public
+
+// Numa classe herdada os membros da classe base
+// ficam membros da classe derivada.
+
+// Todavia, o acesso dos membros da classe base à
+// classe derivada é determinado pelos especificadores
+// de acesso que são public, private e protected.
+//
+// Temos então as seguintes possibilidades:
+//
+//			1) Classe base herdada como public:
+//
+//				i) Members public da classe base:
+//
+//					é o mesmo que fazermos uma cópia dos membros
+//					public e os colocássemos como public na classe derivada.
+//
+//				ii) Members privados da classe base:
+//
+//					Não são passados.
+//
+//				iii) Members protected da classe base
+//
+//					São passados como protected para a classe
+//					derivada (no caso de os termos).
+
+
+class pessoa
+{
+	int idade, peso; // private por defeito
+public:
+	void set(int a, int b)
+	{
+		idade = a; 
+		peso = b;
+	}
+
+	void mostra_dados_base() 
+	{
+		cout << "Idade = " << idade << endl
+		     << "Peso = " << peso 
+		     << endl;
+	}
+};
+
+
+class atleta : public pessoa  // observe que o especificador é public
+{
+	int internacionaliz;  // num de internacionalizações - private
+
+public:
+	atleta(int x)
+	{
+		internacionaliz = x;
+	}
+
+	void mostra_dado_deriv() 
+	{
+		cout << "Num de Internacionalizacoes = "
+		     << internacionaliz 
+  		     << endl;
+	}
+};
+
+int main()
+{
+	atleta a(30);			// acede ao construtor da classe derivada
+
+	a.set(20,70);			// acede a member da classe base/mae
+
+	a.mostra_dados_base();		// acede a member da classe base
+
+	a.mostra_dado_deriv();		// acede a member da classe derivada
+
+	system("pause");
+	return 0;
+}
+
+
+

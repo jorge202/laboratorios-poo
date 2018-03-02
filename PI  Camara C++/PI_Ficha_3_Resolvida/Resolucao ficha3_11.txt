@@ -1,0 +1,61 @@
+/*
+  Resolucao Ficha3_11
+
+  Testa se um número digitado é primo
+
+  Recorde-se que um número primo é um inteiro que apenas 
+  é divisível pela unidade e por si próprio. 
+
+  Sendo assim, por exemplo, 1 é primo enquanto 9 não o é.
+
+*/
+   
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	int num;
+	int k;
+
+	int resto_0; 
+
+	printf("\nTesta se um numero inteiro digitado e primo: ");
+	printf("\n\nDigite um numero inteiro: ");
+		
+	fflush(stdin);
+	scanf("%d", &num);
+	
+	printf("\n\n");
+
+	k = num - 1;
+	resto_0 = 0;
+
+// se a partir de agora a var resto_0 for inicializada a 1, isto
+// significa que houve pelo menos uma divisão que produziu um 
+// resto 0
+
+	while (k > 1)
+	{
+		if ((num % k)== 0)
+		{
+			resto_0 = 1;
+		}
+		
+		k--;
+	}
+
+	if ( resto_0 == 0) 
+	{
+		printf("\nSim, numero primo\n\n");
+	}
+	else
+		printf("\n\nNumero nao primo\n");
+
+	printf("\n\n\n");
+
+	system("pause");
+
+	return 0;
+}
+

@@ -1,0 +1,78 @@
+ 
+/*
+  Resolucao Ficha3_2
+
+  Escreva um programa que leia uma string digitada e que, seguidamente, 
+  chame duas funções para calcular e devolver separadamente as quantidades 
+  das letras maiúsculas e minúsculas, respetivamente. 
+
+  Por exemplo, digitando a frase Campus Lumiar, a resposta deve ser:
+
+  Quantidade de letras maiúsculas: 2
+  Quantidade de letras minúsculas: 10
+
+  Aplique manipulação da string carater a carater.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int conta_maiusculas(char str[]); // protótipos
+int conta_minusculas(char str[]);
+
+int main()
+{
+	char msg[30];
+
+	printf("\n\nDigite uma string:\n\n");
+	fflush(stdin);
+	gets(msg);
+
+// chamar uma função para contar o numero de letras maiúsculas
+	printf("\n\nA string contem %d letras maiusculas", conta_maiusculas(msg));
+
+// chamar uma função para contar o numero de letras minúsculas
+	printf("\n\nA string contem %d letras minusculas", conta_minusculas(msg));
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+
+} // Fecha main
+
+int conta_maiusculas(char str[])
+{
+	int i, n; 
+
+	i = 0;
+	n = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= 'A' && str[i] <= 'Z')		
+			n++;
+
+		i++;
+	}
+	return n;
+
+} // Fecho da função conta_maiusculas
+
+
+int conta_minusculas(char str[])
+{
+	int i, n; 
+
+	i = 0;
+	n = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')		
+			n++;
+
+		i++;
+	}
+	return n;
+
+}// Fecho da função conta_minusculas
+

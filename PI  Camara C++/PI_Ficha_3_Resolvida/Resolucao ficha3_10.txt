@@ -1,0 +1,75 @@
+/*
+   Resolucao Ficha3_10
+
+   Escreva um programa que leia um conjunto de cinco valores 
+   doubles digitados, carregando-os, um a um, num vector 
+   unidimensional e, que, seguidamente, passe-o (o vector) a 
+   uma função. 
+	
+   Esta, por sua vez, deve calcular e devolver (à função que 
+   lhe chamou, a main) a quantidade (número de ocorrências) 
+   de valores acima de 20. 
+
+   Por sua vez, a função main deve imprimir este resultado 
+   (o valor que foi devolvido).
+*/
+ 
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_ELS 5
+
+int contaValsAcima_20(double nums[])
+{
+	int i; // índice geral
+	int k; // ctdr valores acima 20
+
+	for (k=0, i=0; i < NUM_ELS; i++)
+	{
+		if (nums[i] > 20)
+			k++;	
+	}
+		
+	return k;
+
+}// fecha função
+
+int main()
+{
+	double valores[NUM_ELS]; 
+	int i; 
+
+// Carrega os valores digitados no array
+
+	for (i=0; i < NUM_ELS; i++)
+	{
+		printf("\n\nDigite o valor seguinte: ");
+
+		fflush(stdin);
+
+		scanf("%lf", &valores[i]);
+	}
+
+// Mostra os valores carregados no array
+
+	printf("\n\nOs Valores digitados sao: \n\n");
+
+	for (i=0; i < NUM_ELS; i++)
+	{
+		printf("\n %6.2lf", valores[i]);
+	}
+
+
+// chama a função e mostra o resultado aqui
+
+	printf("\n\nA quantidade de valores acima de 20 = %d", contaValsAcima_20(valores));
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+}
+
+
+
+

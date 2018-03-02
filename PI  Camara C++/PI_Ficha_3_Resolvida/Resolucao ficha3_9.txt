@@ -1,0 +1,57 @@
+/*
+  Resolucao Ficha3_9
+
+  Crie um programa que determine quantos valores negativos 
+  contém um array de cinco valores doubles inicializados 
+  no momento da sua declaração.
+
+*/ 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+int main()
+{
+	double v[] = {15.75, 13.25, -5.25, 8.27, -3.65};
+
+	int k;		// contador-índice geral
+	int k_negs;	// contador de negs
+
+	k = 0; 
+	k_negs = 0;
+	
+	// mortrar vector inicializado aquando da sua declaração
+
+	printf("\n\nOs valores do array sao: \n\n");
+
+	k = 0; 
+	while (k < N)
+	{
+		printf("\n%5.2lf", v[k]);
+
+		k++;
+	}
+
+	// processar (cálculos) o vector
+
+	k = 0;
+	while (k < N)
+	{
+		if (v[k] < 0)
+		{
+			k_negs++;
+		}
+	
+		k++;
+	}
+
+	//mostrar resultados
+	printf("\n\nQuantidade de valores negativos = %d", k_negs);
+	
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+}

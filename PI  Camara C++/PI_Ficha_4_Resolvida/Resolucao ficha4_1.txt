@@ -1,0 +1,77 @@
+/*
+	Resolução Ficha4_1
+
+	Crie um programa que determine o valor máximo de uma matriz 
+	de 3 X 4 de valores digitados do tipo double.
+*/
+  
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N_LINS 3 //número de linhas da matriz
+#define N_COLS 4 //número de colunas da matriz
+
+int main()
+{
+	double mat[N_LINS][N_COLS];
+
+	int i;	// ctdr-indice das linhas
+	int j;	// ctdr-indice da colunas
+
+	double maximo;
+
+	// carregamento da tabela bidimensional
+	
+	printf("\n\nCalcula o valor maximo de um array bidimensional\n\n");
+
+	for (i = 0; i < N_LINS; i++)
+	{
+		for (j = 0; j < N_COLS; j++)
+		{
+			printf("Digite o valor %d,%d: ", i, j);
+			fflush(stdin);
+			scanf("%lf", &mat[i][j]);
+
+			printf("\n");
+		}
+	}
+
+	// mostrar a tabela
+
+	printf("\n\nEis os dados da tabela: \n\n");
+
+	for (i = 0; i < N_LINS; i++)
+	{
+		for (j = 0; j < N_COLS; j++)
+		{
+			printf(" %4.2lf ", mat[i][j]);			
+		}
+		
+		printf("\n"); // mudança de linha da matriz
+	}
+
+	// determina o valor máximo da tabela
+	// vamos dizer que o valor máximo é o primeiro elemento da tabela
+	// seguidamente verficamos com os restantes elms, actualizando a
+	// var maximo sempre que seja encontado um valor superior ao actual
+
+	maximo = mat[0][0]; 
+
+	for (i = 0; i < N_LINS; i++)
+	{
+		for (j = 0; j < N_COLS; j++)
+		{
+			if (mat[i][j] > maximo)
+
+				maximo = mat[i][j]; // actualiza var com novo valor
+		}
+	}
+
+	// mostrar o valor máximo
+
+	printf("\n\nO valor maximo = %4.2lf\n\n", maximo);
+
+	system("pause");
+	
+	return 0;
+}

@@ -1,0 +1,102 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+// Programa Ref_095_ambitoVars_2
+
+// global
+int x;
+
+
+int quad(int n)
+{
+	// return n * n;
+
+	int res;
+
+	res = n * n;
+
+	return res;	
+}
+
+void quad3()
+{
+	x = x  *  x;
+}
+
+void quad2(int *p);
+
+
+int main()
+{
+	// Scope -- ambito das vars
+	// As vars declaradas fora de qualquer func sao consideradas
+	// globais. Ou seja, podem ser acedidas/partilhadas/alteradas por
+	// qualquer func.
+	// As vars declaradas dentro de uma func são locais a essa func, ou seja, sao
+	// somente acessíveis dentro da func onde foram declaradas.
+	// As vars declaradas dentro da func main() sao tambem locais a main()
+	// As vars declaradas dentro de blocos limitados por chavetas sao locais,
+	// ou seja, acessiveis somente dentro desses blocos.
+	// Sendo assim, podemos ter uma var, declarada dentro de um bloco, com o
+	// mesmo nome do que uma var declarada normalmente fora desse bloco,
+	// já que sao independentes, a externa ao bloco funciona como global em 
+	// relacao a esse bloco, enquanto a interna ao bloco limita-se em efeito
+	// dentro desse bloco
+	
+	int k1, k2;
+	k1 = 10;
+	k2 = 20;
+
+	/*
+	cout << "Valor var k1 = " << k1 << endl << endl;
+
+	{
+		int k1 = 100;
+		cout << "Valor var k1 declarada dentro de um bloco = " << k1 << endl << endl;
+		
+		k1 = k1 + k2;
+		cout << "O novo valor da var k1, declarada dentro de um bloco = " << k1 << endl << endl;
+	}
+
+	cout << "Valor var k1 declarada externamente ao bloco = " << k1 << endl << endl;
+*/
+
+
+	//  passagem por valor
+	// passa o valor de k1 à func quad
+
+	cout << "O quadrado de k1, usando func e sem ptrs = "
+			<< quad(k1) << endl << endl;
+
+
+	// repetir o mesmo processo, mas usando ptr
+	// passagem por referencia
+
+	quad2(&k1);
+	cout << "O quadrado de k1, usando func e ptrs = "
+			<< k1 << endl << endl;
+
+
+	x = 30;
+	quad3();
+	cout << "O quadrado da var global x, usando func = "
+			<< x << endl << endl;
+
+
+	fflush(stdin);
+	getchar();
+	
+	return 0;
+}
+
+// o efeito é o seguinte;
+// 1º: declara um ptr para inteiros
+// 2º: p = &k1
+
+void quad2(int *p)
+{
+	 *p = *p  *  *p;	
+}

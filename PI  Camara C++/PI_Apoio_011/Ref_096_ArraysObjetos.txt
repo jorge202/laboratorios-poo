@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
+
+using namespace std;
+
+// Programa Ref_096_ArraysObjetos
+
+// Arrays de objectos
+//
+// Arrays de objectos guardam objectos de uma classe
+// tal como um array de elementos de um determinado 
+// tipo de dados.
+// 
+// Aqui, os elementos são objectos
+//
+// No instante da definição do array de objectos, para cada um
+// dos elementos ou objecto é chamado o default-constructor, que
+// é o construtor sem argumentos. 
+// É chamado o default construtor porque não exige a presença de 
+// argumentos quando é invocado.
+//
+
+class  CRect		// define a Classe Rectangulo 
+{
+private:
+	int coord_x;		// coordenadasdo canto superior esq do rect em pixels
+	int coord_y;
+	int altura;			// altura e largura do rect
+	int largura;
+public:
+	CRect(int x, int y, int alt, int larg)	// construtor de classe
+	{
+		coord_x = x;
+		coord_y = y;
+		altura = alt;
+		largura = larg;
+	}
+	CRect()	// construtor defeito
+	{
+		coord_x = 10;
+		coord_y = 10;
+		altura = 60;
+		largura = 100;
+	}
+
+	int Perimetro()	// método para calcular o perimetro do rectangulo
+	{
+		return (altura * 2) + (largura * 2);
+	}
+};
+
+int main()
+{
+	// cria um array de 4 objectos da classe CRect, de 0 a 3, rects[0], ... , rects[3]
+	// usa o construtor defeito
+	CRect rects[4];
+
+	// cria objecto rectX, usa construtor da classe, porque nao pertence 
+	// a um array de objectos -- é um objecto isolado
+	CRect rectX(100, 200, 80, 120);
+	
+	// Vamos escolher o objecto 1, o segundo elemento no array de objectos
+	
+	cout << "Perimetro do rects[1] = " 	// Perimetro do segundo objecto do Array de objectos
+			<< rects[1].Perimetro ()
+			<< " pixels. " << endl;
+
+	cout << "Perimetro do rectX = "		// Perimetro do objecto rectX
+			<< rectX.Perimetro ()
+			<< " Pixels. " << endl;
+	
+	system("pause");
+	return 0;
+}
+

@@ -1,0 +1,79 @@
+/*
+   Resolucao Ficha3_8
+ 
+   Repete o programa anterior, mas usando uma função para
+   indicar se um array unidimensional de doubles contém 
+   valores acima do valor 100.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+int testaAcima_100(double vals[]);
+
+int main()
+{
+	double nums[N];
+	int tem_acima_100;
+	int i;
+
+	// carregar vector
+	for (i = 0; i < N; i++)
+	{
+		printf("\n\nDigite o valor seguinte: ");
+		fflush(stdin);
+		scanf("%lf", &nums[i]); // %lf significa long float que é um double
+	}
+
+	// ver os valores do vector
+
+	printf("\n\nEis os valores digitados:\n\n");
+
+	for (i = 0; i < N; i++)
+	{
+		printf("\n %6.2lf", nums[i]); // %lf = long float = double
+	}
+
+// chama a função testaAcima_100, passando como argumento
+// o array de doubles
+	if (testaAcima_100(nums)) // se receber 1, então é verdade
+	{
+		printf("\n\nSim, ha valores acima do valor 100");
+	}
+	else
+		printf("\n\nNao ha valores acima do valor 100");
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+
+} // fecha main
+
+
+// Esta função retorna 1, logo que detecte um valor acima de 100
+// Caso contrário, retorna 0 ao programa chamante
+
+int testaAcima_100(double vals[])
+{
+	int i = 0;
+	while (i < N)
+	{
+		if (vals[i] > 100)
+		{
+
+// sai da função aqui logo que seja detectado um valor acima de 100
+			return 1; 
+		}
+
+		i++;
+	}
+
+// se a execução do código chegou aqui é que nunca retornou
+// antes da função, o que significa que não foram detectados
+// valores acim do valo 100
+
+	return 0;
+}

@@ -1,0 +1,96 @@
+/*
+    	Resolução Ficha4_4
+
+	Use ponteiros para determinar o valor máximo de um array de cinco 
+	doubles inteiros digitados. 
+	
+	Aplique um ponteiro para os elementos do array e também um outro 
+	para a variável auxiliar que guarda o valor máximo.
+*/
+     
+#include <stdio.h>
+#include <stdlib.h>
+
+#define N 5
+
+int main()
+{
+	double nums[N];	
+	double maximo;
+	int i;
+
+	double *p;    // pointer para o array
+	double *m;    // pointer para a var maximo
+
+	p = &nums[0]; // carrega no pointer p endereço 1ª posição array
+	m = &maximo;  // carrega no pointer m endereço da var maximo
+
+	// Carregar o array
+	// Ter em atenção que a sintaxe da função scanf requer, além de, 
+	// primeiramente, o especificador %lf do tipo de dados a ler, o endereço
+	// da variável ou elemento de um array onde carregar o valor digitado.
+
+	// Portanto, neste caso, já que estamos a usar pointers, a forma 
+	// correta do scanf é scanf("%lf", p); já que p contém o endereço do
+	// elemento do array onde carregar o valor digitado.
+
+	i = 0;
+	while (i < N)
+	{
+		printf("\n\nDigite o valor seguinte: ");
+		
+		fflush(stdin);
+		
+		scanf("%lf", p); // atenção a esta instrução, não requer & antes do p
+
+		p++; // próximo endereço
+		i++; // controloa o número de elementos
+	}
+
+	// Mostrar os valores que foram digitados para o array
+
+	printf("\n\nOs valores digitados do array sao:\n\n");
+ 
+	i = 0;		   // reset do contador
+	p = &nums[0];  // reset pointer para a 1ª posição array
+	while (i < N)
+	{
+		printf("\n%4.2lf", *p++);
+		i++;
+	}
+
+	// determinar valor máximo
+
+	// Numa das técnicas, inicializa-se uma var aux com o 1º elm do array.
+	// Seguidamente, percorre-se todo o array, actualizando esta var aux 
+	// sempre que se encontre um valor superior
+			  		  
+	i = 0;
+	p = &nums[0];  // reset pointer para a 1ª posição array
+	
+	*m = *p; // através do pointer m guarda-se o valor do 1º elm do array
+	
+	//printf("\n\nO valor apontado por m = %4.2lf", *m);
+	
+	//printf("\n\nO valor apontado por p da prim posicao = %4.2lf", *p);
+
+	while (i < N)
+	{
+		if (*p >= *m) // se o conteúdo apontado por p for maior do apontado por m
+		{
+			*m = *p; // então actualiza-se o conteúdo apontado por m (var maximo)
+		}
+
+		p++;
+		i++;
+	}
+
+	// mostrar o valor máximo
+
+	 printf("\n\nO valor maximo = %4.2lf", *m);
+
+	printf("\n\n\n");
+	system("pause");
+
+	return 0;
+}
